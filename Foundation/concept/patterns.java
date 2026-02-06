@@ -246,3 +246,523 @@ class Pattern8 {
     }
     // Pattern8.invertedStarPyramid(5);
 }
+
+
+// ============================================================================
+// PATTERN 9: DIAMOND STAR PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ *     *
+ *    * *
+ *   * * *
+ *  * * * *
+ * * * * * *
+ *  * * * *
+ *   * * *
+ *    * *
+ *     *
+ * 
+ * APPROACH:
+ * - Upper half: Star pyramid (1 to n)
+ * - Lower half: Inverted star pyramid (n-1 to 1)
+ */
+class Pattern9 {
+    public static void diamondStar(int n) {
+        // Upper half
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < n - i; j++) System.out.print("  ");
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+        // Lower half
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 0; j < n - i; j++) System.out.print("  ");
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+    }
+    // Pattern9.diamondStar(5);
+}
+
+
+// ============================================================================
+// PATTERN 10: HALF DIAMOND STAR PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * *
+ * * *
+ * * * *
+ * * * * *
+ * * * * * *
+ * * * * *
+ * * * *
+ * * *
+ * *
+ * 
+ * APPROACH:
+ * - Upper half: Right triangle (1 to n)
+ * - Lower half: Inverted right triangle (n-1 to 1)
+ */
+class Pattern10 {
+    public static void halfDiamond(int n) {
+        // Upper half
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+        // Lower half
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+    }
+    // Pattern10.halfDiamond(5);
+}
+
+
+// ============================================================================
+// PATTERN 11: BINARY NUMBER TRIANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * 1
+ * 0 1
+ * 1 0 1
+ * 0 1 0 1
+ * 1 0 1 0 1
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Inner loop: alternate between 0 and 1
+ * - If (i+j) is even, print 1; else print 0
+ */
+class Pattern11 {
+    public static void binaryTriangle(int n) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                System.out.print(((i + j) % 2) + " ");
+            }
+            System.out.println();
+        }
+    }
+    // Pattern11.binaryTriangle(5);
+}
+
+
+// ============================================================================
+// PATTERN 12: NUMBER CROWN PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * 1        1
+ * 12      21
+ * 123    321
+ * 1234  4321
+ * 1234554321
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Left side: print 1 to i (no spaces)
+ * - Spaces: (2 * (n - i)) spaces
+ * - Right side: print i down to 1 (no spaces)
+ */
+class Pattern12 {
+    public static void numberCrown(int n) {
+        for (int i = 1; i <= n; i++) {
+            // Left side (1 to i)
+            for (int j = 1; j <= i; j++) System.out.print(j);
+            // Spaces in middle
+            for (int j = 0; j < 2 * (n - i); j++) System.out.print(" ");
+            // Right side (i down to 1)
+            for (int j = i; j >= 1; j--) System.out.print(j);
+            System.out.println();
+        }
+    }
+    // Pattern12.numberCrown(5);
+}
+
+
+// ============================================================================
+// PATTERN 13: INCREASING NUMBER TRIANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * 1
+ * 2 3
+ * 4 5 6
+ * 7 8 9 10
+ * 11 12 13 14 15
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Inner loop: for columns
+ * - Use counter variable to print continuous numbers
+ */
+class Pattern13 {
+    public static void increasingNumberTriangle(int n) {
+        int counter = 1;
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(counter + " ");
+                counter++;
+            }
+            System.out.println();
+        }
+    }
+    // Pattern13.increasingNumberTriangle(5);
+}
+
+
+// ============================================================================
+// PATTERN 14: INCREASING LETTER TRIANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * A
+ * A B
+ * A B C
+ * A B C D
+ * A B C D E
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Inner loop: for columns
+ * - Cast (char)('A' + j) to print letters
+ */
+class Pattern14 {
+    public static void increasingLetterTriangle(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((char)('A' + j) + " ");
+            }
+            System.out.println();
+        }
+    }
+    // Pattern14.increasingLetterTriangle(5);
+}
+
+
+// ============================================================================
+// PATTERN 15: REVERSE LETTER TRIANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * E D C B A
+ * D C B A
+ * C B A
+ * B A
+ * A
+ * 
+ * APPROACH:
+ * - Outer loop: from n down to 1
+ * - Inner loop: print letters from 'A' to ('A' + n - i)
+ * - Letters in reverse order
+ */
+class Pattern15 {
+    public static void reverseLetterTriangle(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = n; j > i; j--) {
+                System.out.print((char)('A' + j - 1) + " ");
+            }
+            System.out.println();
+        }
+    }
+    // Pattern15.reverseLetterTriangle(5);
+}
+
+
+// ============================================================================
+// PATTERN 16: ALPHA-RAMP PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * A
+ * B B
+ * C C C
+ * D D D D
+ * E E E E E
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Inner loop: repeat same letter i times
+ * - Use (char)('A' + i) for letter
+ */
+class Pattern16 {
+    public static void alphaRamp(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j <= i; j++) {
+                System.out.print((char)('A' + i) + " ");
+            }
+            System.out.println();
+        }
+    }
+    // Pattern16.alphaRamp(5);
+}
+
+
+// ============================================================================
+// PATTERN 17: ALPHA-HILL PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=4):
+ *    A
+ *   ABA
+ *  ABCBA
+ * ABCDCBA
+ * 
+ * APPROACH:
+ * - Outer loop: for rows
+ * - Print spaces: (n - i - 1)
+ * - Left side: print A to (i+1)th letter - no spaces
+ * - Right side: print from (i-1)th letter to A - no spaces
+ */
+class Pattern17 {
+    public static void alphaHill(int n) {
+        for (int i = 0; i < n; i++) {
+            // Spaces
+            for (int j = 0; j < n - i - 1; j++) System.out.print(" ");
+            // Left side
+            for (int j = 0; j <= i; j++) System.out.print((char)('A' + j));
+            // Right side
+            for (int j = i - 1; j >= 0; j--) System.out.print((char)('A' + j));
+            System.out.println();
+        }
+    }
+    // Pattern17.alphaHill(4);
+}
+
+
+// ============================================================================
+// PATTERN 18: ALPHA-TRIANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * A
+ * B C D
+ * E F G H I
+ * J K L M N O P
+ * Q R S T U V W X Y
+ * 
+ * APPROACH:
+ * - Use counter to track character
+ * - Outer loop: for rows
+ * - Inner loop: print (2*i - 1) characters per row
+ * - Increment and print character continuously
+ */
+class Pattern18 {
+    public static void alphaTriangle(int n) {
+        char ch = 'A';
+        for (int i = 1; i <= n; i++) {
+            // Print 2*i - 1 characters
+            for (int j = 1; j <= 2 * i - 1; j++) {
+                System.out.print(ch + " ");
+                ch++;
+            }
+            System.out.println();
+        }
+    }
+    // Pattern18.alphaTriangle(5);
+}
+
+
+// ============================================================================
+// PATTERN 19: SYMMETRIC-VOID PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * **********
+ * ****  ****
+ * ***    ***
+ * **      **
+ * *        *
+ * *        *
+ * **      **
+ * ***    ***
+ * ****  ****
+ * **********
+ * 
+ * APPROACH:
+ * - Upper half: decreasing stars with increasing space
+ * - Lower half: mirror of upper half
+ */
+class Pattern19 {
+    public static void symmetricVoid(int n) {
+        // Upper half
+        for (int i = 0; i < n; i++) {
+            // Left stars
+            for (int j = 0; j < n - i; j++) System.out.print("*");
+            // Middle spaces
+            for (int j = 0; j < 2 * i; j++) System.out.print(" ");
+            // Right stars
+            for (int j = 0; j < n - i; j++) System.out.print("*");
+            System.out.println();
+        }
+        // Lower half
+        for (int i = 1; i <= n; i++) {
+            // Left stars
+            for (int j = 0; j < i; j++) System.out.print("*");
+            // Middle spaces
+            for (int j = 0; j < 2 * (n - i); j++) System.out.print(" ");
+            // Right stars
+            for (int j = 0; j < i; j++) System.out.print("*");
+            System.out.println();
+        }
+    }
+    // Pattern19.symmetricVoid(5);
+}
+
+
+// ============================================================================
+// PATTERN 20: SYMMETRIC-BUTTERFLY PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=5):
+ * *         *
+ * * *     * *
+ * * * * * * *
+ * * *     * *
+ * *         *
+ * 
+ * APPROACH:
+ * - Upper half: increasing stars, gap in middle, decreasing stars
+ * - Middle row: all stars
+ * - Lower half: mirror of upper
+ */
+class Pattern20 {
+    public static void symmetricButterfly(int n) {
+        for (int i = 1; i <= n; i++) {
+            // Left stars
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            // Middle space
+            for (int j = 0; j < 2 * (n - i); j++) System.out.print("  ");
+            // Right stars
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+        // Lower half (mirror)
+        for (int i = n - 1; i >= 1; i--) {
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            for (int j = 0; j < 2 * (n - i); j++) System.out.print("  ");
+            for (int j = 0; j < i; j++) System.out.print("* ");
+            System.out.println();
+        }
+    }
+    // Pattern20.symmetricButterfly(5);
+}
+
+
+// ============================================================================
+// PATTERN 21: HOLLOW RECTANGLE PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=4, m=5):
+ * * * * *
+ * *     *
+ * *     *
+ * * * * *
+ * 
+ * APPROACH:
+ * - First row: print all stars
+ * - Middle rows: first and last column only
+ * - Last row: print all stars
+ * - No spaces between stars
+ */
+class Pattern21 {
+    public static void hollowRectangle(int n, int m) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++) {
+                if (i == 1 || i == n || j == 1 || j == m) {
+                    System.out.print("*");
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+    // Pattern21.hollowRectangle(4, 5);
+}
+
+
+// ============================================================================
+// PATTERN 22: THE NUMBER PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=4):
+ * 4 4 4 4 4 4 4
+ * 4 3 3 3 3 3 4
+ * 4 3 2 2 2 3 4
+ * 4 3 2 1 2 3 4
+ * 
+ * APPROACH:
+ * - Outer loop: for rows (0 to n-1)
+ * - Inner loop: for columns
+ * - Calculate minimum distance from edges
+ * - Print (n - min_distance)
+ */
+class Pattern22 {
+    public static void numberPattern(int n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 2 * n - 1; j++) {
+                // Calculate distance from all edges
+                int top = i;
+                int left = j;
+                int right = (2 * n - 2) - j;
+                int bottom = (n - 1) - i;
+                
+                // Minimum distance from any edge
+                int min = Math.min(Math.min(top, bottom), Math.min(left, right));
+                System.out.print((n - min) + " ");
+            }
+            System.out.println();
+        }
+    }
+    // Pattern22.numberPattern(4);
+}
+
+
+// ============================================================================
+// PATTERN 23: HEART PATTERN
+// ============================================================================
+/*
+ * DIAGRAM (n=6):
+ *   ***   ***
+ * ************
+ * ************
+ *  **********
+ *   ********
+ *    ******
+ *     ****
+ *      **
+ * 
+ * APPROACH:
+ * - Upper curves: two separate sections
+ * - Middle: full width
+ * - Lower: inverted pyramid
+ */
+class Pattern23 {
+    public static void heartPattern(int n) {
+        // Upper part - two curves
+        for (int i = n / 2; i <= n; i += 2) {
+            // Left spaces
+            for (int j = 1; j < n - i; j += 2) System.out.print(" ");
+            // Left curve
+            for (int j = 1; j <= i; j++) System.out.print("*");
+            // Middle spaces
+            for (int j = 1; j <= n - i; j++) System.out.print(" ");
+            // Right curve
+            for (int j = 1; j <= i; j++) System.out.print("*");
+            System.out.println();
+        }
+        
+        // Lower part - inverted pyramid
+        for (int i = n; i >= 1; i--) {
+            for (int j = i; j < n; j++) System.out.print(" ");
+            for (int j = 1; j <= (i * 2) - 1; j++) System.out.print("*");
+            System.out.println();
+        }
+    }
+    // Pattern23.heartPattern(6);
+}
