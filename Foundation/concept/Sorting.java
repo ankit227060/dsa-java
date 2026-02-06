@@ -155,3 +155,250 @@ class InsertionSort {
         // Output: [12, 22, 25, 34, 64]
     }
 }
+
+
+// ============================================================================
+// 4. MERGE SORT
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Divide and conquer algorithm
+ * - Divides array into halves, sorts recursively, then merges
+ * - Stable sort (maintains relative order of equal elements)
+ * - Efficient for large datasets
+ * - Requires additional space for merging
+ * 
+ * TIME COMPLEXITY:
+ * - Best: O(n log n)
+ * - Average: O(n log n)
+ * - Worst: O(n log n)
+ * 
+ * SPACE COMPLEXITY: O(n) - needs temporary array for merging
+ * 
+ * EXAMPLE:
+ * Array: [64, 34, 25, 12]
+ * Divide: [64, 34] [25, 12]
+ * Further: [64] [34] [25] [12]
+ * Merge: [34, 64] [12, 25]
+ * Final: [12, 25, 34, 64]
+ */
+class MergeSort {
+    public static void mergeSort(int[] arr) {
+        if (arr.length <= 1) return;
+        int mid = arr.length / 2;
+        
+        // Create left and right subarrays
+        int[] left = new int[mid];
+        int[] right = new int[arr.length - mid];
+        
+        // Copy data to subarrays
+        System.arraycopy(arr, 0, left, 0, mid);
+        System.arraycopy(arr, mid, right, 0, arr.length - mid);
+        
+        // Recursively sort both halves
+        mergeSort(left);
+        mergeSort(right);
+        
+        // Merge sorted halves
+        merge(arr, left, right);
+    }
+    
+    private static void merge(int[] arr, int[] left, int[] right) {
+        int i = 0, j = 0, k = 0;
+        
+        // Merge smaller elements
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                arr[k++] = left[i++];
+            } else {
+                arr[k++] = right[j++];
+            }
+        }
+        
+        // Copy remaining elements
+        while (i < left.length) {
+            arr[k++] = left[i++];
+        }
+        while (j < right.length) {
+            arr[k++] = right[j++];
+        }
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22};
+        mergeSort(arr);
+        System.out.println("Merge Sort: " + java.util.Arrays.toString(arr));
+        // Output: [12, 22, 25, 34, 64]
+    }
+}
+
+
+// ============================================================================
+// 5. RECURSIVE BUBBLE SORT
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Bubble sort implemented recursively
+ * - Recursively bubbles largest element to end
+ * - Base case: array of size 1 is sorted
+ * - Similar performance to iterative, but uses call stack
+ * 
+ * TIME COMPLEXITY:
+ * - Best: O(n) - already sorted
+ * - Average: O(n²)
+ * - Worst: O(n²)
+ * 
+ * SPACE COMPLEXITY: O(n) - call stack depth
+ */
+class RecursiveBubbleSort {
+    public static void recursiveBubbleSort(int[] arr, int n) {
+        // Base case: if array size is 1, it's sorted
+        if (n == 1) return;
+        
+        // One pass: largest element goes to end
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                // Swap
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+        
+        // Recursively sort first n-1 elements
+        recursiveBubbleSort(arr, n - 1);
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22};
+        recursiveBubbleSort(arr, arr.length);
+        System.out.println("Recursive Bubble Sort: " + java.util.Arrays.toString(arr));
+        // Output: [12, 22, 25, 34, 64]
+    }
+}
+
+
+// ============================================================================
+// 6. RECURSIVE INSERTION SORT
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Insertion sort implemented recursively
+ * - Recursively sorts first n-1 elements, then inserts nth element
+ * - Base case: array of size 1 is sorted
+ * - More intuitive than iterative version
+ * 
+ * TIME COMPLEXITY:
+ * - Best: O(n) - already sorted
+ * - Average: O(n²)
+ * - Worst: O(n²)
+ * 
+ * SPACE COMPLEXITY: O(n) - call stack depth
+ */
+class RecursiveInsertionSort {
+    public static void recursiveInsertionSort(int[] arr, int n) {
+        // Base case: first element is always sorted
+        if (n <= 1) return;
+        
+        // Sort first n-1 elements
+        recursiveInsertionSort(arr, n - 1);
+        
+        // Insert nth element into sorted portion
+        insertElement(arr, n - 1);
+    }
+    
+    private static void insertElement(int[] arr, int index) {
+        int key = arr[index];
+        int j = index - 1;
+        
+        // Shift elements greater than key to right
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            j--;
+        }
+        
+        // Insert key at correct position
+        arr[j + 1] = key;
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22};
+        recursiveInsertionSort(arr, arr.length);
+        System.out.println("Recursive Insertion Sort: " + java.util.Arrays.toString(arr));
+        // Output: [12, 22, 25, 34, 64]
+    }
+}
+
+
+// ============================================================================
+// 7. QUICK SORT
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Divide and conquer algorithm
+ * - Picks pivot and partitions array around it
+ * - Recursively sorts subarrays
+ * - NOT stable (may change relative order of equal elements)
+ * - Average case is very efficient, widely used in practice
+ * 
+ * TIME COMPLEXITY:
+ * - Best: O(n log n) - well-balanced partitions
+ * - Average: O(n log n)
+ * - Worst: O(n²) - when pivot is smallest/largest (rare with good pivot selection)
+ * 
+ * SPACE COMPLEXITY: O(log n) - call stack depth
+ * 
+ * EXAMPLE:
+ * Array: [64, 34, 25, 12, 22]
+ * Pivot: 64
+ * Partition: [34, 25, 12, 22] | 64 | []
+ * Continue recursively on subarrays
+ */
+class QuickSort {
+    public static void quickSort(int[] arr) {
+        if (arr.length == 0) return;
+        quickSort(arr, 0, arr.length - 1);
+    }
+    
+    private static void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            // Partition and get pivot index
+            int pi = partition(arr, low, high);
+            
+            // Recursively sort left and right subarrays
+            quickSort(arr, low, pi - 1);
+            quickSort(arr, pi + 1, high);
+        }
+    }
+    
+    private static int partition(int[] arr, int low, int high) {
+        // Choose last element as pivot
+        int pivot = arr[high];
+        int i = low - 1;
+        
+        // Move smaller elements to left
+        for (int j = low; j < high; j++) {
+            if (arr[j] < pivot) {
+                i++;
+                // Swap
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+        
+        // Place pivot at correct position
+        int temp = arr[i + 1];
+        arr[i + 1] = arr[high];
+        arr[high] = temp;
+        
+        return i + 1;
+    }
+    
+    public static void main(String[] args) {
+        int[] arr = {64, 34, 25, 12, 22};
+        quickSort(arr);
+        System.out.println("Quick Sort: " + java.util.Arrays.toString(arr));
+        // Output: [12, 22, 25, 34, 64]
+    }
+}
