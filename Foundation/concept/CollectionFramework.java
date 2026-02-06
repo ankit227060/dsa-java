@@ -639,3 +639,130 @@ class CollectionsClassExample {
 }
 
 
+/*
+ * ========================================================================
+ * QUICK COMPARISON TABLE
+ * ========================================================================
+ * 
+ * LIST:
+ * ArrayList     - Fast random access, slow insertion/deletion (middle)
+ * LinkedList    - Fast insertion/deletion, slow random access
+ * 
+ * SET:
+ * HashSet       - Unordered, fastest, no duplicates
+ * LinkedHashSet - Insertion order maintained, unique elements
+ * TreeSet       - Sorted order, unique, slow but ordered
+ * 
+ * QUEUE:
+ * Queue         - FIFO operations
+ * Deque         - Double ended operations
+ * PriorityQueue - Elements by priority
+ * 
+ * MAP:
+ * HashMap       - Unordered key-value pairs, fastest
+ * TreeMap       - Sorted by key, slower but ordered
+ * 
+ * ========================================================================
+ */
+
+
+// ============================================================================
+// QUICK RECAP - ALL 15 COLLECTIONS AT A GLANCE
+// ============================================================================
+
+/*
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                  ALL 15 COLLECTIONS - QUICK SUMMARY CHART                   ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+#   NAME              TYPE       ORDER          KEY METHODS           COMPLEXITY  BEST FOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1   ArrayList         List       Insertion      add, get, remove      O(1)/O(n)   Fast random access
+2   Stack             LIFO       LIFO           push, pop, peek       O(1)        Undo/Redo, DFS
+3   Queue             FIFO       FIFO           offer, poll, peek     O(1)        BFS, Task queue
+4   LinkedList        List       Insertion      add, get, remove      O(1)/O(n)   Insert/Delete ends
+5   Iterator          —          Sequential     hasNext, next, remove O(1)/O(n)   Safe iteration
+6   PriorityQueue     Queue      Priority       add, poll, peek       O(log n)/O(1) Heap, Dijkstra
+7   ArrayDeque        Deque      Both ends      addFirst/Last         O(1)        Deque operations
+8   HashSet           Set        Unordered      add, remove, contains O(1)        Fast lookup
+9   LinkedHashSet     Set        Insertion      add, remove, contains O(1)        Order + speed
+10  TreeSet           Set        Sorted         add, ceiling, floor   O(log n)    Sorted + range
+11  Custom Class Set  Set        —              Override equals/hash  O(1)/O(log) Object storage
+12  HashMap           Map        Unordered      put, get, remove      O(1)        Key-value lookup
+13  TreeMap           Map        Sorted key     put, get, ceiling     O(log n)    Sorted map
+14  Arrays            Utility    —              sort, search, copy    O(n log n)  Array operations
+15  Collections       Utility    —              sort, shuffle, max     O(n log n)  Collection utilities
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                    ONE-LINER QUICK REFERENCE                               ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+1.  ArrayList        → Resizable array, fast random access O(1), slow middle removal O(n)
+2.  Stack            → LIFO push/pop/peek O(1), use for undo/backtracking
+3.  Queue (FIFO)     → FIFO offer/poll/peek O(1), use for BFS/scheduling
+4.  LinkedList       → Doubly-linked, fast ends O(1), slow random access O(n)
+5.  Iterator         → Traverse safely with hasNext/next/remove, avoid ConcurrentModification
+6.  PriorityQueue    → Min-heap O(log n) add/remove, max-heap with reverseOrder()
+7.  ArrayDeque       → Fast deque operations at both ends O(1), faster than LinkedList
+8.  HashSet          → Unordered unique elements O(1), override equals/hashCode
+9.  LinkedHashSet    → HashSet + insertion order O(1), slight overhead vs HashSet
+10. TreeSet          → Sorted unique O(log n), Red-Black tree, ceiling/floor/range queries
+11. Set of Custom    → Override equals/hashCode for Hash types, Comparable for Tree types
+12. HashMap          → Unordered key-value O(1), allows null key/values, fast lookup
+13. TreeMap          → Sorted by key O(log n), Red-Black tree, range operations, no null keys
+14. Arrays Class     → Static utilities: sort O(n log n), binarySearch O(log n), copy, fill, asList
+15. Collections      → Static utilities: sort, reverse, shuffle, max, min, frequency, unmodifiable
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                         DECISION TREE                                       ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+NEED A COLLECTION?
+├─ NEED ORDERED ACCESS?
+│  ├─ Random access? → ArrayList (fast get O(1))
+│  └─ Frequent insertions? → LinkedList (O(1) at ends)
+│
+├─ NEED UNIQUE ELEMENTS (SET)?
+│  ├─ Need fast lookup only? → HashSet O(1)
+│  ├─ Need insertion order? → LinkedHashSet O(1)
+│  └─ Need sorted order? → TreeSet O(log n) + range operations
+│
+├─ NEED FIFO/LIFO?
+│  ├─ LIFO (Last-In-First-Out)? → Stack (push/pop/peek)
+│  ├─ FIFO (First-In-First-Out)? → Queue with LinkedList
+│  ├─ By priority? → PriorityQueue (heap)
+│  └─ Both ends? → ArrayDeque (deque operations)
+│
+└─ NEED KEY-VALUE PAIRS (MAP)?
+   ├─ Need fast lookup? → HashMap O(1)
+   ├─ Need sorted keys? → TreeMap O(log n)
+   └─ Need insertion order? → LinkedHashMap (not in 15)
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                     OPERATION COMPARISON TABLE                              ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+           ArrayList  LinkedList  Stack   Queue   HashSet  TreeSet  HashMap  TreeMap
+add()      O(1)       O(1)        O(1)    O(1)    O(1)     O(log n) O(1)     O(log n)
+remove()   O(n)       O(n)        O(1)    O(1)    O(1)     O(log n) O(1)     O(log n)
+get()      O(1)       O(n)        —       —       —        —        —        —
+contains() O(n)       O(n)        —       —       O(1)     O(log n) O(1)     O(log n)
+iterate    O(n)       O(n)        O(n)    O(n)    O(n)     O(n)     O(n)     O(n)
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                        KEY PATTERNS & TRICKS                                ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+Stack → Use LinkedList or ArrayDeque for better performance (not always Stack class)
+Queue → Implement with LinkedList: Queue<T> q = new LinkedList<>();
+MaxHeap → PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+Custom Objects → HashSet/TreeSet need equals/hashCode or Comparable
+Sorted Map → TreeMap only, no alternative
+Immutable → Collections.unmodifiableList/Set/Map(collection)
+Thread-Safe → Collections.synchronizedList/Set/Map(collection)
+Iterator → Use to safely remove during iteration: while(it.hasNext()) it.remove();
+Array to List → Arrays.asList(array) for quick conversion
+List to Array → list.toArray() or list.toArray(new T[0])
+
+*/
