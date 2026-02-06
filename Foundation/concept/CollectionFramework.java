@@ -200,3 +200,122 @@ class IteratorExample {
         System.out.println("After removal: " + list);  // [1, 3, 4, 5]
     }
 }
+
+
+// ============================================================================
+// 6. PRIORITYQUEUE
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Min-heap by default (smallest element has highest priority)
+ * - Not thread-safe
+ * - Elements ordered by priority, not insertion order
+ * 
+ * KEY OPERATIONS:
+ * - add(E e) / offer(E e): Add element - O(log n)
+ * - poll(): Remove min element - O(log n)
+ * - peek(): View min element - O(1)
+ * 
+ * EXAMPLE:
+ */
+class PriorityQueueExample {
+    public static void main(String[] args) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        
+        // Add elements (unordered)
+        pq.add(30);
+        pq.add(10);
+        pq.add(20);
+        
+        // Poll removes in priority order (min first)
+        while (!pq.isEmpty()) {
+            System.out.println(pq.poll());  // 10, 20, 30
+        }
+        
+        // For max-heap
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+        maxHeap.add(30);
+        maxHeap.add(10);
+        maxHeap.add(20);
+        System.out.println(maxHeap.poll());  // 30
+    }
+}
+
+
+// ============================================================================
+// 7. ARRAYDEQUE
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Resizable array implementation of Deque (Double Ended Queue)
+ * - Faster than LinkedList for operations at both ends
+ * - Not thread-safe
+ * 
+ * KEY OPERATIONS:
+ * - addFirst(E e) / addLast(E e): Add at ends - O(1)
+ * - removeFirst() / removeLast(): Remove from ends - O(1)
+ * - getFirst() / getLast(): View ends - O(1)
+ * 
+ * EXAMPLE:
+ */
+class ArrayDequeExample {
+    public static void main(String[] args) {
+        ArrayDeque<String> deque = new ArrayDeque<>();
+        
+        // Add at both ends
+        deque.addFirst("A");
+        deque.addLast("B");
+        deque.addLast("C");
+        
+        // View
+        System.out.println("First: " + deque.getFirst());  // A
+        System.out.println("Last: " + deque.getLast());    // C
+        
+        // Remove from both ends
+        System.out.println("Removed First: " + deque.removeFirst());  // A
+        System.out.println("Removed Last: " + deque.removeLast());    // C
+    }
+}
+
+
+// ============================================================================
+// 8. HASHSET
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Unordered collection of unique elements
+ * - Based on HashMap
+ * - No duplicate values allowed
+ * - No insertion order maintained
+ * 
+ * KEY OPERATIONS:
+ * - add(E e): Add element - O(1)
+ * - remove(Object o): Remove element - O(1)
+ * - contains(Object o): Check existence - O(1)
+ * - size(): Get size - O(1)
+ * 
+ * EXAMPLE:
+ */
+class HashSetExample {
+    public static void main(String[] args) {
+        HashSet<Integer> set = new HashSet<>();
+        
+        // Add elements
+        set.add(10);
+        set.add(20);
+        set.add(30);
+        set.add(10);  // Duplicate, won't be added
+        
+        System.out.println("Size: " + set.size());  // 3
+        System.out.println("Contains 20: " + set.contains(20));  // true
+        
+        // Remove
+        set.remove(20);
+        
+        // Iterate
+        for (int num : set) {
+            System.out.println(num);
+        }
+    }
+}
+
