@@ -85,3 +85,118 @@ class StackExample {
         System.out.println("Empty: " + stack.isEmpty());  // false
     }
 }
+
+
+// ============================================================================
+// 3. QUEUE
+// ============================================================================
+/*
+ * CONCEPT:
+ * - FIFO (First In First Out) data structure
+ * - First element added is first to be removed
+ * - Interface (implement with LinkedList, ArrayDeque, etc.)
+ * 
+ * KEY OPERATIONS:
+ * - add(E e) / offer(E e): Add element to rear - O(1)
+ * - remove() / poll(): Remove and return front - O(1)
+ * - element() / peek(): View front without removing - O(1)
+ * 
+ * EXAMPLE:
+ */
+class QueueExample {
+    public static void main(String[] args) {
+        Queue<Integer> queue = new LinkedList<>();
+        
+        // Add elements
+        queue.offer(10);
+        queue.offer(20);
+        queue.offer(30);
+        
+        // Peek front
+        System.out.println("Front: " + queue.peek());  // 10
+        
+        // Poll front
+        System.out.println("Removed: " + queue.poll());  // 10
+        
+        // Size
+        System.out.println("Size: " + queue.size());  // 2
+    }
+}
+
+
+// ============================================================================
+// 4. LINKEDLIST
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Doubly-linked list implementation
+ * - Not thread-safe
+ * - Implements both List and Deque
+ * - Better for insertion/deletion at both ends
+ * 
+ * KEY OPERATIONS:
+ * - add(E e): Add at end - O(1)
+ * - addFirst(E e) / addLast(E e): O(1)
+ * - remove(int index): O(n)
+ * - get(int index): O(n)
+ * 
+ * EXAMPLE:
+ */
+class LinkedListExample {
+    public static void main(String[] args) {
+        LinkedList<String> list = new LinkedList<>();
+        
+        // Add elements
+        list.add("A");
+        list.add("B");
+        list.add("C");
+        
+        // Add at specific positions
+        list.addFirst("Z");  // Add at beginning
+        list.addLast("W");   // Add at end
+        
+        // Remove
+        list.removeFirst();
+        list.removeLast();
+        
+        // Iterate
+        for (String s : list) {
+            System.out.println(s);  // Z, A, B, C
+        }
+    }
+}
+
+
+// ============================================================================
+// 5. ITERATOR
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Interface to traverse collection elements sequentially
+ * - Allows safe removal during iteration
+ * - Methods: hasNext(), next(), remove()
+ * 
+ * KEY OPERATIONS:
+ * - hasNext(): Check if more elements - O(1)
+ * - next(): Get next element - O(1)
+ * - remove(): Remove current element - O(n) depends on collection
+ * 
+ * EXAMPLE:
+ */
+class IteratorExample {
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        
+        Iterator<Integer> iter = list.iterator();
+        
+        while (iter.hasNext()) {
+            int num = iter.next();
+            if (num == 2) {
+                iter.remove();  // Safe removal
+            }
+            System.out.println(num);
+        }
+        
+        System.out.println("After removal: " + list);  // [1, 3, 4, 5]
+    }
+}
