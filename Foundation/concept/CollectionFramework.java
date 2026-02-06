@@ -319,3 +319,138 @@ class HashSetExample {
     }
 }
 
+
+// ============================================================================
+// 9. LINKEDHASHSET
+// ============================================================================
+/*
+ * CONCEPT:
+ * - LinkedList + HashSet combination
+ * - Maintains insertion order
+ * - Unique elements only
+ * - Slightly slower than HashSet due to linked list overhead
+ * 
+ * KEY OPERATIONS:
+ * - add(E e): Add element - O(1)
+ * - remove(Object o): Remove element - O(1)
+ * - Iteration order: Insertion order
+ * 
+ * EXAMPLE:
+ */
+class LinkedHashSetExample {
+    public static void main(String[] args) {
+        LinkedHashSet<String> set = new LinkedHashSet<>();
+        
+        // Add elements
+        set.add("A");
+        set.add("B");
+        set.add("C");
+        set.add("A");  // Duplicate ignored
+        
+        // Iterate - maintains insertion order
+        for (String s : set) {
+            System.out.println(s);  // A, B, C
+        }
+    }
+}
+
+
+// ============================================================================
+// 10. TREESET
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Sorted Set using Red-Black tree
+ * - Elements automatically sorted (ascending by default)
+ * - No duplicates
+ * - Slower than HashSet but maintains order
+ * 
+ * KEY OPERATIONS:
+ * - add(E e): Add element - O(log n)
+ * - remove(Object o): Remove element - O(log n)
+ * - ceiling(E e): Smallest >= E - O(log n)
+ * - floor(E e): Largest <= E - O(log n)
+ * 
+ * EXAMPLE:
+ */
+class TreeSetExample {
+    public static void main(String[] args) {
+        TreeSet<Integer> set = new TreeSet<>();
+        
+        // Add elements (automatically sorted)
+        set.add(30);
+        set.add(10);
+        set.add(20);
+        
+        // Iterate - automatic sorting
+        for (int num : set) {
+            System.out.println(num);  // 10, 20, 30
+        }
+        
+        // Range operations
+        System.out.println("Ceiling of 15: " + set.ceiling(15));  // 20
+        System.out.println("Floor of 15: " + set.floor(15));      // 10
+        
+        // Reverse order
+        for (int num : set.descendingSet()) {
+            System.out.println(num);  // 30, 20, 10
+        }
+    }
+}
+
+
+// ============================================================================
+// 11. SET OF CUSTOM CLASSES
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Store custom objects in Set
+ * - Must override equals() and hashCode() for HashSet/LinkedHashSet
+ * - Must implement Comparable for TreeSet
+ * 
+ * EXAMPLE:
+ */
+class Student {
+    int id;
+    String name;
+    
+    public Student(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return id == student.id;
+    }
+    
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(id);
+    }
+    
+    @Override
+    public String toString() {
+        return "Student(" + id + ", " + name + ")";
+    }
+}
+
+class CustomSetExample {
+    public static void main(String[] args) {
+        HashSet<Student> set = new HashSet<>();
+        
+        set.add(new Student(1, "Alice"));
+        set.add(new Student(2, "Bob"));
+        set.add(new Student(1, "Alice"));  // Duplicate, won't be added
+        
+        System.out.println("Size: " + set.size());  // 2
+        
+        for (Student s : set) {
+            System.out.println(s);
+        }
+    }
+}
+
