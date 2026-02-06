@@ -454,3 +454,188 @@ class CustomSetExample {
     }
 }
 
+
+// ============================================================================
+// 12. HASHMAP
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Key-Value pair storage with HashMap
+ * - Unordered (order not guaranteed)
+ * - Allows null key and values
+ * - Not thread-safe
+ * 
+ * KEY OPERATIONS:
+ * - put(K key, V value): Add/update - O(1)
+ * - get(Object key): Retrieve value - O(1)
+ * - remove(Object key): Remove entry - O(1)
+ * - containsKey(Object key): Check key - O(1)
+ * 
+ * EXAMPLE:
+ */
+class HashMapExample {
+    public static void main(String[] args) {
+        HashMap<Integer, String> map = new HashMap<>();
+        
+        // Add entries
+        map.put(1, "Alice");
+        map.put(2, "Bob");
+        map.put(3, "Charlie");
+        
+        // Get value
+        System.out.println("ID 2: " + map.get(2));  // Bob
+        
+        // Check key
+        System.out.println("Contains 1: " + map.containsKey(1));  // true
+        
+        // Remove
+        map.remove(2);
+        
+        // Iterate
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        }
+    }
+}
+
+
+// ============================================================================
+// 13. TREEMAP
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Sorted Map using Red-Black tree
+ * - Keys automatically sorted in ascending order
+ * - Slower than HashMap but maintains order
+ * - No null keys allowed
+ * 
+ * KEY OPERATIONS:
+ * - put(K key, V value): Add/update - O(log n)
+ * - get(Object key): Retrieve - O(log n)
+ * - remove(Object key): Remove - O(log n)
+ * - ceilingKey(K key): First key >= K - O(log n)
+ * 
+ * EXAMPLE:
+ */
+class TreeMapExample {
+    public static void main(String[] args) {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        
+        // Add entries (automatically sorted by key)
+        map.put(3, "Charlie");
+        map.put(1, "Alice");
+        map.put(2, "Bob");
+        
+        // Iterate - automatic sorting by key
+        for (Map.Entry<Integer, String> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
+            // Output: 1->Alice, 2->Bob, 3->Charlie
+        }
+        
+        // Range operations
+        System.out.println("Ceiling key of 2: " + map.ceilingKey(2));  // 2
+        System.out.println("Floor key of 2: " + map.floorKey(2));      // 2
+    }
+}
+
+
+// ============================================================================
+// 14. ARRAYS CLASS
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Utility class for array operations
+ * - Static methods for sorting, searching, copying
+ * - Part of java.util package
+ * 
+ * KEY OPERATIONS:
+ * - Arrays.sort(array): Sort array - O(n log n)
+ * - Arrays.binarySearch(array, key): Search sorted array - O(log n)
+ * - Arrays.copyOf(array, length): Copy array - O(n)
+ * - Arrays.fill(array, value): Fill array - O(n)
+ * - Arrays.asList(array): Convert to List - O(1)
+ * 
+ * EXAMPLE:
+ */
+class ArraysClassExample {
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 8, 1, 9};
+        
+        // Sort
+        Arrays.sort(arr);
+        System.out.println("Sorted: " + Arrays.toString(arr));  // [1, 2, 5, 8, 9]
+        
+        // Binary search (must be sorted)
+        int index = Arrays.binarySearch(arr, 5);
+        System.out.println("Index of 5: " + index);  // 2
+        
+        // Copy
+        int[] copy = Arrays.copyOf(arr, arr.length);
+        
+        // Fill
+        Arrays.fill(arr, 0);
+        System.out.println("Filled: " + Arrays.toString(arr));  // [0, 0, 0, 0, 0]
+        
+        // Convert to List
+        List<Integer> list = Arrays.asList(1, 2, 3);
+    }
+}
+
+
+// ============================================================================
+// 15. COLLECTIONS CLASS
+// ============================================================================
+/*
+ * CONCEPT:
+ * - Utility class for collection operations
+ * - Static methods for searching, sorting, shuffling
+ * - Provides unmodifiable, synchronized views
+ * 
+ * KEY OPERATIONS:
+ * - Collections.sort(list): Sort list - O(n log n)
+ * - Collections.reverse(list): Reverse list - O(n)
+ * - Collections.shuffle(list): Randomize list - O(n)
+ * - Collections.binarySearch(list, key): Search - O(log n)
+ * - Collections.max(collection): Get maximum - O(n)
+ * - Collections.min(collection): Get minimum - O(n)
+ * - Collections.frequency(collection, obj): Count occurrences - O(n)
+ * - Collections.unmodifiableList(list): Make immutable
+ * - Collections.synchronizedList(list): Make thread-safe
+ * 
+ * EXAMPLE:
+ */
+class CollectionsClassExample {
+    public static void main(String[] args) {
+        List<Integer> list = new ArrayList<>(Arrays.asList(5, 2, 8, 1, 9, 2));
+        
+        // Sort
+        Collections.sort(list);
+        System.out.println("Sorted: " + list);  // [1, 2, 2, 5, 8, 9]
+        
+        // Reverse
+        Collections.reverse(list);
+        System.out.println("Reversed: " + list);  // [9, 8, 5, 2, 2, 1]
+        
+        // Find max/min
+        System.out.println("Max: " + Collections.max(list));  // 9
+        System.out.println("Min: " + Collections.min(list));  // 1
+        
+        // Frequency
+        System.out.println("Frequency of 2: " + Collections.frequency(list, 2));  // 2
+        
+        // Shuffle
+        Collections.shuffle(list);
+        System.out.println("Shuffled: " + list);
+        
+        // Binary search
+        Collections.sort(list);
+        int index = Collections.binarySearch(list, 5);
+        System.out.println("Index of 5: " + index);
+        
+        // Make unmodifiable
+        List<Integer> immutable = Collections.unmodifiableList(list);
+        // immutable.add(10);  // Throws UnsupportedOperationException
+    }
+}
+
+
