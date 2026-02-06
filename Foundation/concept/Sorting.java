@@ -402,3 +402,133 @@ class QuickSort {
         // Output: [12, 22, 25, 34, 64]
     }
 }
+
+
+// ============================================================================
+// SORTING ALGORITHMS QUICK COMPARISON
+// ============================================================================
+
+/*
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                    SORTING ALGORITHMS - QUICK RECAP                        ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+ALGORITHM              TIME COMPLEXITY          SPACE    STABLE  BEST FOR
+                   BEST       AVG       WORST    COMP
+─────────────────────────────────────────────────────────────────────────────
+Bubble Sort        O(n)       O(n²)     O(n²)    O(1)     YES     Educational
+Selection Sort     O(n²)      O(n²)     O(n²)    O(1)     NO      Small datasets
+Insertion Sort     O(n)       O(n²)     O(n²)    O(1)     YES     Small/nearly sorted
+Merge Sort         O(n log n) O(n log n) O(n log n) O(n)  YES     Large datasets
+Recursive Bubble   O(n)       O(n²)     O(n²)    O(n)     YES     Educational
+Recursive Insert   O(n)       O(n²)     O(n²)    O(n)     YES     Educational
+Quick Sort         O(n log n) O(n log n) O(n²)   O(log n) NO      General purpose
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                         KEY CHARACTERISTICS                                 ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+1. BUBBLE SORT
+   ├─ Compares adjacent elements
+   ├─ Stable and in-place
+   ├─ Optimization: break if no swaps
+   └─ Use: Learning, small arrays
+
+2. SELECTION SORT
+   ├─ Finds and places minimum
+   ├─ Not stable, in-place
+   ├─ Consistent O(n²) performance
+   └─ Use: When memory is critical
+
+3. INSERTION SORT
+   ├─ Builds sorted array incrementally
+   ├─ Stable and in-place
+   ├─ O(n) for nearly sorted data
+   └─ Use: Small arrays, online sorting
+
+4. MERGE SORT
+   ├─ Divide and conquer approach
+   ├─ Stable, requires O(n) space
+   ├─ Guaranteed O(n log n)
+   └─ Use: Large datasets, consistent performance
+
+5. RECURSIVE BUBBLE SORT
+   ├─ Bubble sort using recursion
+   ├─ Stable, uses O(n) stack space
+   ├─ Same time complexity as iterative
+   └─ Use: Understanding recursion
+
+6. RECURSIVE INSERTION SORT
+   ├─ Insertion sort using recursion
+   ├─ Stable, uses O(n) stack space
+   ├─ Elegant recursive pattern
+   └─ Use: Understanding recursion
+
+7. QUICK SORT
+   ├─ Divide and conquer with partitioning
+   ├─ Not stable, uses O(log n) stack space
+   ├─ O(n log n) average, O(n²) worst case
+   └─ Use: General-purpose, industrial standard
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                      WHEN TO USE WHICH ALGORITHM                           ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+Small Dataset (< 50 elements)?
+  → Use Insertion Sort (O(n) best case, simple implementation)
+
+Large Dataset?
+  → Merge Sort (guaranteed O(n log n), stable)
+  → Quick Sort (average O(n log n), widely used)
+
+Need Stable Sort?
+  → Bubble Sort, Insertion Sort, Merge Sort
+
+Memory Critical?
+  → Selection Sort, Bubble Sort (O(1) space)
+
+Already Nearly Sorted?
+  → Insertion Sort (O(n) best case)
+
+Need Best Average Performance?
+  → Quick Sort (O(n log n) average, faster in practice)
+
+Need Guaranteed Performance?
+  → Merge Sort (always O(n log n))
+
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                         QUICK CODE SNIPPETS                                ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+BUBBLE SORT (Optimized):
+  for (int i = 0; i < n-1; i++) {
+    boolean swapped = false;
+    for (int j = 0; j < n-i-1; j++) {
+      if (arr[j] > arr[j+1]) { swap(j, j+1); swapped = true; }
+    }
+    if (!swapped) break;
+  }
+
+SELECTION SORT:
+  for (int i = 0; i < n-1; i++) {
+    int min = i;
+    for (int j = i+1; j < n; j++) {
+      if (arr[j] < arr[min]) min = j;
+    }
+    swap(i, min);
+  }
+
+INSERTION SORT:
+  for (int i = 1; i < n; i++) {
+    int key = arr[i];
+    for (int j = i-1; j >= 0 && arr[j] > key; j--) {
+      arr[j+1] = arr[j];
+    }
+    arr[j+1] = key;
+  }
+
+MERGE SORT: Divide → Sort → Merge (O(n log n) guaranteed)
+
+QUICK SORT: Partition → Sort left/right (O(n log n) average)
+
+*/
