@@ -17,6 +17,5 @@ class Solution {
         return secondlargest;
     }
 }
-
-//time complexity: O(n)
-//space complexity: O(1)
+//time: O(n)
+//space: O(1)
